@@ -195,6 +195,16 @@
             <p><strong>Paper:</strong> [Your Paper Title Here]</p>
         </div>
     </div>
+
+    <div class="Models">
+        <h3>Description of the model names</h3>
+        <div class="description">
+            <p><strong>Original Audio [Code]:</strong> The original audio recording from a speaker with cerebral palsy. The code in parenthesis is the speaker - F: Female, M: Male, with the number representing the speaker from that catagory </p>
+            <p><strong>Baseline LibriTTS:</strong> A TTS model trained from scratch on LibriTTS data only </p>
+            <p><strong>Finetuned Block:</strong> The Baseline LibriTTS model finetuned for many-to-one voice conversion on UASpeech data. The training setup splits the train, test and dev data via recording blocks, which results in word overlap between training and testing </p>
+            <p><strong>Finetuned Utterance:</strong> The Baseline LibriTTS model finetuned for many-to-one voice conversion on UASpeech data. The training setup splits the train, test and dev data on an utterance level, meaning there will be no word overlap between sets </p>
+        </div>
+    </div>
     
     <div class="instructions">
         <h3>Instructions:</h3>
@@ -212,7 +222,7 @@
         <div class="word-title">Word: "Hello"</div>
         <div class="audio-grid">
             <div class="audio-item">
-                <div class="model-name">Ground Truth</div>
+                <div class="model-name">Original Audio</div>
                 <audio controls>
                     <source src="audio/hello_groundtruth.wav" type="audio/wav">
                     <source src="audio/hello_groundtruth.mp3" type="audio/mpeg">
@@ -246,7 +256,7 @@
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Model A</div>
+                <div class="model-name">Baseline LibriTTS</div>
                 <audio controls>
                     <source src="audio/hello_model_a.wav" type="audio/wav">
                     <source src="audio/hello_model_a.mp3" type="audio/mpeg">
@@ -280,7 +290,7 @@
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Model B</div>
+                <div class="model-name">Finetuned Block</div>
                 <audio controls>
                     <source src="audio/hello_model_b.wav" type="audio/wav">
                     <source src="audio/hello_model_b.mp3" type="audio/mpeg">
@@ -314,7 +324,7 @@
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Proposed Method</div>
+                <div class="model-name">Finetuned Utterance</div>
                 <audio controls>
                     <source src="audio/hello_proposed.wav" type="audio/wav">
                     <source src="audio/hello_proposed.mp3" type="audio/mpeg">
@@ -354,7 +364,7 @@
         <div class="word-title">Word: "World"</div>
         <div class="audio-grid">
             <div class="audio-item">
-                <div class="model-name">Ground Truth</div>
+                <div class="model-name">Original Audio</div>
                 <audio controls>
                     <source src="audio/world_groundtruth.wav" type="audio/wav">
                     <source src="audio/world_groundtruth.mp3" type="audio/mpeg">
@@ -388,7 +398,7 @@
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Model A</div>
+                <div class="model-name">Baseline LibriTTS</div>
                 <audio controls>
                     <source src="audio/world_model_a.wav" type="audio/wav">
                     <source src="audio/world_model_a.mp3" type="audio/mpeg">
@@ -422,7 +432,7 @@
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Model B</div>
+                <div class="model-name">Finetuned Block</div>
                 <audio controls>
                     <source src="audio/world_model_b.wav" type="audio/wav">
                     <source src="audio/world_model_b.mp3" type="audio/mpeg">
@@ -456,7 +466,7 @@
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Proposed Method</div>
+                <div class="model-name">Finetuned Utterance</div>
                 <audio controls>
                     <source src="audio/world_proposed.wav" type="audio/wav">
                     <source src="audio/world_proposed.mp3" type="audio/mpeg">
