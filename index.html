@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Sample Evaluation - MOS Study</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            color: #555;
+            font-size: 16px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .sample-container {
+            background: white;
+            margin: 30px 0;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .word-title {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 15px;
+            background: #ecf0f1;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .audio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .audio-item {
+            text-align: center;
+            padding: 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            background: #fafafa;
+        }
+        
+        .audio-item:hover {
+            border-color: #3498db;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(52, 152, 219, 0.2);
+        }
+        
+        .model-name {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            font-size: 16px;
+            padding: 8px;
+            background: #ecf0f1;
+            border-radius: 5px;
+        }
+        
+        audio {
+            width: 100%;
+            max-width: 300px;
+            margin-bottom: 15px;
+        }
+        
+        .rating-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .rating-label {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+        
+        .rating-scale {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        
+        .rating-option {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .rating-option input[type="radio"] {
+            margin-bottom: 5px;
+            transform: scale(1.2);
+        }
+        
+        .rating-option label {
+            font-size: 12px;
+            color: #666;
+            cursor: pointer;
+        }
+        
+        .instructions {
+            background: #e8f4fd;
+            border: 1px solid #bee5eb;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .instructions h3 {
+            color: #0c5460;
+            margin-top: 0;
+        }
+        
+        .instructions ul {
+            color: #155724;
+            margin-bottom: 0;
+        }
+        
+        .submit-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .submit-btn {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .submit-btn:hover {
+            background: #2980b9;
+        }
+        
+        @media (max-width: 768px) {
+            .audio-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            body {
+                padding: 10px;
+            }
+            
+            .rating-scale {
+                justify-content: space-around;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Audio Sample Evaluation Study</h1>
+        <div class="description">
+            <p>Welcome to our audio quality evaluation study. Please listen to each audio sample and rate the quality using the Mean Opinion Score (MOS) scale below each sample. Your feedback is valuable for our research.</p>
+            <p><strong>Paper:</strong> [Your Paper Title Here]</p>
+        </div>
+    </div>
+    
+    <div class="instructions">
+        <h3>Instructions:</h3>
+        <ul>
+            <li>Listen to each audio sample using headphones or good quality speakers</li>
+            <li>Rate each sample on a scale of 1-5 (1 = Poor, 5 = Excellent)</li>
+            <li>Consider overall audio quality, naturalness, and intelligibility</li>
+            <li>You can replay samples as many times as needed</li>
+            <li>Please evaluate all samples before submitting</li>
+        </ul>
+    </div>
+
+    <!-- Sample 1 -->
+    <div class="sample-container">
+        <div class="word-title">Word: "Hello"</div>
+        <div class="audio-grid">
+            <div class="audio-item">
+                <div class="model-name">Ground Truth</div>
+                <audio controls>
+                    <source src="audio/hello_groundtruth.wav" type="audio/wav">
+                    <source src="audio/hello_groundtruth.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="hello_gt" value="1" id="hello_gt_1">
+                            <label for="hello_gt_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_gt" value="2" id="hello_gt_2">
+                            <label for="hello_gt_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_gt" value="3" id="hello_gt_3">
+                            <label for="hello_gt_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_gt" value="4" id="hello_gt_4">
+                            <label for="hello_gt_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_gt" value="5" id="hello_gt_5">
+                            <label for="hello_gt_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="audio-item">
+                <div class="model-name">Model A</div>
+                <audio controls>
+                    <source src="audio/hello_model_a.wav" type="audio/wav">
+                    <source src="audio/hello_model_a.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="hello_ma" value="1" id="hello_ma_1">
+                            <label for="hello_ma_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_ma" value="2" id="hello_ma_2">
+                            <label for="hello_ma_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_ma" value="3" id="hello_ma_3">
+                            <label for="hello_ma_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_ma" value="4" id="hello_ma_4">
+                            <label for="hello_ma_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_ma" value="5" id="hello_ma_5">
+                            <label for="hello_ma_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="audio-item">
+                <div class="model-name">Model B</div>
+                <audio controls>
+                    <source src="audio/hello_model_b.wav" type="audio/wav">
+                    <source src="audio/hello_model_b.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="hello_mb" value="1" id="hello_mb_1">
+                            <label for="hello_mb_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_mb" value="2" id="hello_mb_2">
+                            <label for="hello_mb_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_mb" value="3" id="hello_mb_3">
+                            <label for="hello_mb_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_mb" value="4" id="hello_mb_4">
+                            <label for="hello_mb_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_mb" value="5" id="hello_mb_5">
+                            <label for="hello_mb_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="audio-item">
+                <div class="model-name">Proposed Method</div>
+                <audio controls>
+                    <source src="audio/hello_proposed.wav" type="audio/wav">
+                    <source src="audio/hello_proposed.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="hello_pm" value="1" id="hello_pm_1">
+                            <label for="hello_pm_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_pm" value="2" id="hello_pm_2">
+                            <label for="hello_pm_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_pm" value="3" id="hello_pm_3">
+                            <label for="hello_pm_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_pm" value="4" id="hello_pm_4">
+                            <label for="hello_pm_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="hello_pm" value="5" id="hello_pm_5">
+                            <label for="hello_pm_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sample 2 -->
+    <div class="sample-container">
+        <div class="word-title">Word: "World"</div>
+        <div class="audio-grid">
+            <div class="audio-item">
+                <div class="model-name">Ground Truth</div>
+                <audio controls>
+                    <source src="audio/world_groundtruth.wav" type="audio/wav">
+                    <source src="audio/world_groundtruth.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="world_gt" value="1" id="world_gt_1">
+                            <label for="world_gt_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_gt" value="2" id="world_gt_2">
+                            <label for="world_gt_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_gt" value="3" id="world_gt_3">
+                            <label for="world_gt_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_gt" value="4" id="world_gt_4">
+                            <label for="world_gt_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_gt" value="5" id="world_gt_5">
+                            <label for="world_gt_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="audio-item">
+                <div class="model-name">Model A</div>
+                <audio controls>
+                    <source src="audio/world_model_a.wav" type="audio/wav">
+                    <source src="audio/world_model_a.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="world_ma" value="1" id="world_ma_1">
+                            <label for="world_ma_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_ma" value="2" id="world_ma_2">
+                            <label for="world_ma_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_ma" value="3" id="world_ma_3">
+                            <label for="world_ma_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_ma" value="4" id="world_ma_4">
+                            <label for="world_ma_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_ma" value="5" id="world_ma_5">
+                            <label for="world_ma_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="audio-item">
+                <div class="model-name">Model B</div>
+                <audio controls>
+                    <source src="audio/world_model_b.wav" type="audio/wav">
+                    <source src="audio/world_model_b.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="world_mb" value="1" id="world_mb_1">
+                            <label for="world_mb_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_mb" value="2" id="world_mb_2">
+                            <label for="world_mb_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_mb" value="3" id="world_mb_3">
+                            <label for="world_mb_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_mb" value="4" id="world_mb_4">
+                            <label for="world_mb_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_mb" value="5" id="world_mb_5">
+                            <label for="world_mb_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="audio-item">
+                <div class="model-name">Proposed Method</div>
+                <audio controls>
+                    <source src="audio/world_proposed.wav" type="audio/wav">
+                    <source src="audio/world_proposed.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <div class="rating-section">
+                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="world_pm" value="1" id="world_pm_1">
+                            <label for="world_pm_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_pm" value="2" id="world_pm_2">
+                            <label for="world_pm_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_pm" value="3" id="world_pm_3">
+                            <label for="world_pm_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_pm" value="4" id="world_pm_4">
+                            <label for="world_pm_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="world_pm" value="5" id="world_pm_5">
+                            <label for="world_pm_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add more sample containers here as needed -->
+
+    <div class="submit-section">
+        <button class="submit-btn" onclick="submitRatings()">Submit Ratings</button>
+        <p style="margin-top: 15px; color: #666;">Thank you for participating in our evaluation study!</p>
+    </div>
+
+    <script>
+        function submitRatings() {
+            // Collect all ratings
+            const ratings = {};
+            const radioButtons = document.querySelectorAll('input[type="radio"]:checked');
+            
+            radioButtons.forEach(radio => {
+                ratings[radio.name] = radio.value;
+            });
+            
+            // Check if all samples have been rated
+            const expectedRatings = ['hello_gt', 'hello_ma', 'hello_mb', 'hello_pm', 
+                                   'world_gt', 'world_ma', 'world_mb', 'world_pm'];
+            
+            const missingRatings = expectedRatings.filter(rating => !ratings[rating]);
+            
+            if (missingRatings.length > 0) {
+                alert('Please rate all audio samples before submitting.');
+                return;
+            }
+            
+            // Here you would typically send the ratings to your server
+            console.log('Ratings:', ratings);
+            alert('Ratings submitted successfully! Thank you for your participation.');
+            
+            // Example: Send to server
+            // fetch('/submit-ratings', {
+            //     method: 'POST',
+            //     headers: {'Content-Type': 'application/json'},
+            //     body: JSON.stringify(ratings)
+            // });
+        }
+    </script>
+</body>
+</html>
