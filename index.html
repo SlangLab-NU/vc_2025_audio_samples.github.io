@@ -213,145 +213,239 @@
             <li>Rate each sample on a scale of 1-5 (1 = Poor, 5 = Excellent)</li>
             <li>Consider overall audio quality, naturalness, and intelligibility</li>
             <li>You can replay samples as many times as needed</li>
+            <li>You can use the evaluations below each sample to track your ratings</li>
             <li>Please evaluate all samples before submitting</li>
+            <li>Submit evaluation on the following Google Form:</li>
         </ul>
     </div>
 
     <!-- Sample 1 -->
     <div class="sample-container">
-        <div class="word-title">Word: "Hello"</div>
+        <div class="word-title">Sample 1</div>
         <div class="audio-grid">
             <div class="audio-item">
                 <div class="model-name">Original Audio</div>
                 <audio controls>
-                    <source src="audio/hello_groundtruth.wav" type="audio/wav">
-                    <source src="audio/hello_groundtruth.mp3" type="audio/mpeg">
+                    <source src="audio/sample1_original.wav" type="audio/wav">
+                    <source src="audio/sample1_original.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 <div class="rating-section">
-                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-label">Rate this sample in terms of intelligibility:</div>
                     <div class="rating-scale">
                         <div class="rating-option">
-                            <input type="radio" name="hello_gt" value="1" id="hello_gt_1">
-                            <label for="hello_gt_1">1<br>Poor</label>
+                            <input type="radio" name="sample1_orig_intel" value="1" id="sample1_orig_intel_1">
+                            <label for="sample1_orig_intel_1">1<br>Poor</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_gt" value="2" id="hello_gt_2">
-                            <label for="hello_gt_2">2<br>Fair</label>
+                            <input type="radio" name="sample1_orig_intel" value="2" id="sample1_orig_intel_2">
+                            <label for="sample1_orig_intel_2">2<br>Fair</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_gt" value="3" id="hello_gt_3">
-                            <label for="hello_gt_3">3<br>Good</label>
+                            <input type="radio" name="sample1_orig_intel" value="3" id="sample1_orig_intel_3">
+                            <label for="sample1_orig_intel_3">3<br>Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_gt" value="4" id="hello_gt_4">
-                            <label for="hello_gt_4">4<br>Very Good</label>
+                            <input type="radio" name="sample1_orig_intel" value="4" id="sample1_orig_intel_4">
+                            <label for="sample1_orig_intel_4">4<br>Very Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_gt" value="5" id="hello_gt_5">
-                            <label for="hello_gt_5">5<br>Excellent</label>
+                            <input type="radio" name="sample1_orig_intel" value="5" id="sample1_orig_intel_5">
+                            <label for="sample1_orig_intel_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                    <div class="rating-label" style="margin-top: 20px;">Rate this sample in terms of naturalness:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_orig_natural" value="1" id="sample1_orig_natural_1">
+                            <label for="sample1_orig_natural_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_orig_natural" value="2" id="sample1_orig_natural_2">
+                            <label for="sample1_orig_natural_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_orig_natural" value="3" id="sample1_orig_natural_3">
+                            <label for="sample1_orig_natural_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_orig_natural" value="4" id="sample1_orig_natural_4">
+                            <label for="sample1_orig_natural_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_orig_natural" value="5" id="sample1_orig_natural_5">
+                            <label for="sample1_orig_natural_5">5<br>Excellent</label>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Baseline LibriTTS</div>
+                <div class="model-name">Version 1</div>
                 <audio controls>
-                    <source src="audio/hello_model_a.wav" type="audio/wav">
-                    <source src="audio/hello_model_a.mp3" type="audio/mpeg">
+                    <source src="audio/sample1_version1.wav" type="audio/wav">
+                    <source src="audio/sample1_version1.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 <div class="rating-section">
-                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-label">Rate this sample in terms of intelligibility:</div>
                     <div class="rating-scale">
                         <div class="rating-option">
-                            <input type="radio" name="hello_ma" value="1" id="hello_ma_1">
-                            <label for="hello_ma_1">1<br>Poor</label>
+                            <input type="radio" name="sample1_v1_intel" value="1" id="sample1_v1_intel_1">
+                            <label for="sample1_v1_intel_1">1<br>Poor</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_ma" value="2" id="hello_ma_2">
-                            <label for="hello_ma_2">2<br>Fair</label>
+                            <input type="radio" name="sample1_v1_intel" value="2" id="sample1_v1_intel_2">
+                            <label for="sample1_v1_intel_2">2<br>Fair</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_ma" value="3" id="hello_ma_3">
-                            <label for="hello_ma_3">3<br>Good</label>
+                            <input type="radio" name="sample1_v1_intel" value="3" id="sample1_v1_intel_3">
+                            <label for="sample1_v1_intel_3">3<br>Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_ma" value="4" id="hello_ma_4">
-                            <label for="hello_ma_4">4<br>Very Good</label>
+                            <input type="radio" name="sample1_v1_intel" value="4" id="sample1_v1_intel_4">
+                            <label for="sample1_v1_intel_4">4<br>Very Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_ma" value="5" id="hello_ma_5">
-                            <label for="hello_ma_5">5<br>Excellent</label>
+                            <input type="radio" name="sample1_v1_intel" value="5" id="sample1_v1_intel_5">
+                            <label for="sample1_v1_intel_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                    <div class="rating-label" style="margin-top: 20px;">Rate this sample in terms of naturalness:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v1_natural" value="1" id="sample1_v1_natural_1">
+                            <label for="sample1_v1_natural_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v1_natural" value="2" id="sample1_v1_natural_2">
+                            <label for="sample1_v1_natural_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v1_natural" value="3" id="sample1_v1_natural_3">
+                            <label for="sample1_v1_natural_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v1_natural" value="4" id="sample1_v1_natural_4">
+                            <label for="sample1_v1_natural_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v1_natural" value="5" id="sample1_v1_natural_5">
+                            <label for="sample1_v1_natural_5">5<br>Excellent</label>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Finetuned Block</div>
+                <div class="model-name">Version 2</div>
                 <audio controls>
-                    <source src="audio/hello_model_b.wav" type="audio/wav">
-                    <source src="audio/hello_model_b.mp3" type="audio/mpeg">
+                    <source src="audio/sample1_version2.wav" type="audio/wav">
+                    <source src="audio/sample1_version2.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 <div class="rating-section">
-                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-label">Rate this sample in terms of intelligibility:</div>
                     <div class="rating-scale">
                         <div class="rating-option">
-                            <input type="radio" name="hello_mb" value="1" id="hello_mb_1">
-                            <label for="hello_mb_1">1<br>Poor</label>
+                            <input type="radio" name="sample1_v2_intel" value="1" id="sample1_v2_intel_1">
+                            <label for="sample1_v2_intel_1">1<br>Poor</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_mb" value="2" id="hello_mb_2">
-                            <label for="hello_mb_2">2<br>Fair</label>
+                            <input type="radio" name="sample1_v2_intel" value="2" id="sample1_v2_intel_2">
+                            <label for="sample1_v2_intel_2">2<br>Fair</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_mb" value="3" id="hello_mb_3">
-                            <label for="hello_mb_3">3<br>Good</label>
+                            <input type="radio" name="sample1_v2_intel" value="3" id="sample1_v2_intel_3">
+                            <label for="sample1_v2_intel_3">3<br>Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_mb" value="4" id="hello_mb_4">
-                            <label for="hello_mb_4">4<br>Very Good</label>
+                            <input type="radio" name="sample1_v2_intel" value="4" id="sample1_v2_intel_4">
+                            <label for="sample1_v2_intel_4">4<br>Very Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_mb" value="5" id="hello_mb_5">
-                            <label for="hello_mb_5">5<br>Excellent</label>
+                            <input type="radio" name="sample1_v2_intel" value="5" id="sample1_v2_intel_5">
+                            <label for="sample1_v2_intel_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                    <div class="rating-label" style="margin-top: 20px;">Rate this sample in terms of naturalness:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v2_natural" value="1" id="sample1_v2_natural_1">
+                            <label for="sample1_v2_natural_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v2_natural" value="2" id="sample1_v2_natural_2">
+                            <label for="sample1_v2_natural_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v2_natural" value="3" id="sample1_v2_natural_3">
+                            <label for="sample1_v2_natural_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v2_natural" value="4" id="sample1_v2_natural_4">
+                            <label for="sample1_v2_natural_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v2_natural" value="5" id="sample1_v2_natural_5">
+                            <label for="sample1_v2_natural_5">5<br>Excellent</label>
                         </div>
                     </div>
                 </div>
             </div>
             
             <div class="audio-item">
-                <div class="model-name">Finetuned Utterance</div>
+                <div class="model-name">Version 3</div>
                 <audio controls>
-                    <source src="audio/hello_proposed.wav" type="audio/wav">
-                    <source src="audio/hello_proposed.mp3" type="audio/mpeg">
+                    <source src="audio/sample1_version3.wav" type="audio/wav">
+                    <source src="audio/sample1_version3.mp3" type="audio/mpeg">
                     Your browser does not support the audio element.
                 </audio>
                 <div class="rating-section">
-                    <div class="rating-label">Rate this sample:</div>
+                    <div class="rating-label">Rate this sample in terms of intelligibility:</div>
                     <div class="rating-scale">
                         <div class="rating-option">
-                            <input type="radio" name="hello_pm" value="1" id="hello_pm_1">
-                            <label for="hello_pm_1">1<br>Poor</label>
+                            <input type="radio" name="sample1_v3_intel" value="1" id="sample1_v3_intel_1">
+                            <label for="sample1_v3_intel_1">1<br>Poor</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_pm" value="2" id="hello_pm_2">
-                            <label for="hello_pm_2">2<br>Fair</label>
+                            <input type="radio" name="sample1_v3_intel" value="2" id="sample1_v3_intel_2">
+                            <label for="sample1_v3_intel_2">2<br>Fair</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_pm" value="3" id="hello_pm_3">
-                            <label for="hello_pm_3">3<br>Good</label>
+                            <input type="radio" name="sample1_v3_intel" value="3" id="sample1_v3_intel_3">
+                            <label for="sample1_v3_intel_3">3<br>Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_pm" value="4" id="hello_pm_4">
-                            <label for="hello_pm_4">4<br>Very Good</label>
+                            <input type="radio" name="sample1_v3_intel" value="4" id="sample1_v3_intel_4">
+                            <label for="sample1_v3_intel_4">4<br>Very Good</label>
                         </div>
                         <div class="rating-option">
-                            <input type="radio" name="hello_pm" value="5" id="hello_pm_5">
-                            <label for="hello_pm_5">5<br>Excellent</label>
+                            <input type="radio" name="sample1_v3_intel" value="5" id="sample1_v3_intel_5">
+                            <label for="sample1_v3_intel_5">5<br>Excellent</label>
+                        </div>
+                    </div>
+                    <div class="rating-label" style="margin-top: 20px;">Rate this sample in terms of naturalness:</div>
+                    <div class="rating-scale">
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v3_natural" value="1" id="sample1_v3_natural_1">
+                            <label for="sample1_v3_natural_1">1<br>Poor</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v3_natural" value="2" id="sample1_v3_natural_2">
+                            <label for="sample1_v3_natural_2">2<br>Fair</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v3_natural" value="3" id="sample1_v3_natural_3">
+                            <label for="sample1_v3_natural_3">3<br>Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v3_natural" value="4" id="sample1_v3_natural_4">
+                            <label for="sample1_v3_natural_4">4<br>Very Good</label>
+                        </div>
+                        <div class="rating-option">
+                            <input type="radio" name="sample1_v3_natural" value="5" id="sample1_v3_natural_5">
+                            <label for="sample1_v3_natural_5">5<br>Excellent</label>
                         </div>
                     </div>
                 </div>
