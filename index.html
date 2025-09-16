@@ -2564,19 +2564,53 @@
 
     <script>
         function submitToGoogleForm() {
-            // Test with just one field
-            const formData = new FormData();
-            formData.append('entry.697496361', '3'); // Hard-coded test value
+            // Collect all ratings
+            const ratings = {};
+            const radioButtons = document.querySelectorAll('input[type="radio"]:checked');
             
-            fetch('https://docs.google.com/forms/d/e/1FAIpQLSds92NYZkEv_qDgiBr3ENHN3mKVkvzESapOIRNqaaBGA8jL8A/formResponse', {
+            radioButtons.forEach(radio => {
+                ratings[radio.name] = radio.value;
+            });
+            
+            // Check if all samples have been rated (uncomment samples you want to require)
+            const requiredFields = [
+                'sample1_orig_intel', 'sample1_orig_natural',
+                'sample1_v1_intel', 'sample1_v1_natural',
+                'sample1_v2_intel', 'sample1_v2_natural',
+                'sample1_v3_intel', 'sample1_v3_natural'
+                // Add more samples as needed:
+                // 'sample2_orig_intel', 'sample2_orig_natural',
+                // 'sample2_v1_intel', 'sample2_v1_natural',
+                // etc.
+            ];
+            
+            const missingRatings = requiredFields.filter(field => !ratings[field]);
+            if (missingRatings.length > 0) {
+                alert('Please rate all required audio samples before submitting.');
+                return;
+            }
+            
+            // Add participant ID
+            ratings.participantId = 'P' + Date.now();
+            
+            // Replace with your Google Apps Script URL
+            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzzBHGGvKqg0QMtgFBHFngbB1HI0s1dU_nsyE_imH48591drGIyTxw1A7jpvbPZTElW/exec';
+            
+            fetch(SCRIPT_URL, {
                 method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            }).then(() => {
-                alert('Test submission successful!');
-            }).catch(error => {
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(ratings)
+            })
+            .then(response => response.text())
+            .then(result => {
+                alert('Ratings submitted successfully! Thank you for your participation.');
+                document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            })
+            .catch(error => {
                 console.error('Error:', error);
-                alert('Error occurred');
+                alert('There was an error submitting your ratings. Please try again.');
             });
         }
     </script>      
