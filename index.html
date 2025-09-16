@@ -2572,12 +2572,168 @@
                 ratings[radio.name] = radio.value;
             });
             
-            // Check if all samples have been rated
+            // Replace with your Google Form's /formResponse URL
+            const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSds92NYZkEv_qDgiBr3ENHN3mKVkvzESapOIRNqaaBGA8jL8A/viewform';
+
+            const entryMap = {
+            // Sample 1
+                sample1_orig_intel: 'entry.697496361',
+                sample1_orig_natural: 'entry.2086252116',
+                sample1_v1_intel: 'entry.69306145',
+                sample1_v1_natural: 'entry.2048534765',
+                sample1_v2_intel: 'entry.693333540',
+                sample1_v2_natural: 'entry.237906398',
+                sample1_v3_intel: 'entry.103781161',
+                sample1_v3_natural: 'entry.370942983',
+
+                // Sample 2
+                sample2_orig_intel: 'entry.564746457',
+                sample2_orig_natural: 'entry.162154893',
+                sample2_v1_intel: 'entry.1468518590',
+                sample2_v1_natural: 'entry.1734070840',
+                sample2_v2_intel: 'entry.1014996387',
+                sample2_v2_natural: 'entry.1249876313',
+                sample2_v3_intel: 'entry.942526737',
+                sample2_v3_natural: 'entry.1421492835',
+
+                // Sample 3
+                sample3_orig_intel: 'entry.258569922',
+                sample3_orig_natural: 'entry.1273773516',
+                sample3_v1_intel: 'entry.179713210',
+                sample3_v1_natural: 'entry.636288750',
+                sample3_v2_intel: 'entry.349411671',
+                sample3_v2_natural: 'entry.179513446',
+                sample3_v3_intel: 'entry.62463597',
+                sample3_v3_natural: 'entry.117522096',
+
+                // Sample 4
+                sample4_orig_intel: 'entry.1822014897',
+                sample4_orig_natural: 'entry.915086446',
+                sample4_v1_intel: 'entry.501554575',
+                sample4_v1_natural: 'entry.901387862',
+                sample4_v2_intel: 'entry.1339445697',
+                sample4_v2_natural: 'entry.676431687',
+                sample4_v3_intel: 'entry.975588788',
+                sample4_v3_natural: 'entry.1650201379',
+
+                // Sample 5
+                sample5_orig_intel: 'entry.1129572032',
+                sample5_orig_natural: 'entry.1238574893',
+                sample5_v1_intel: 'entry.1516927696',
+                sample5_v1_natural: 'entry.1621835182',
+                sample5_v2_intel: 'entry.2135050501',
+                sample5_v2_natural: 'entry.1516840202',
+                sample5_v3_intel: 'entry.553305069',
+                sample5_v3_natural: 'entry.799227456',
+
+                // Sample 6
+                sample6_orig_intel: 'entry.741401598',
+                sample6_orig_natural: 'entry.1694736410',
+                sample6_v1_intel: 'entry.1690001922',
+                sample6_v1_natural: 'entry.333165356',
+                sample6_v2_intel: 'entry.2073594193',
+                sample6_v2_natural: 'entry.242556228',
+                sample6_v3_intel: 'entry.1065209138',
+                sample6_v3_natural: 'entry.1830375350',
+
+                // Sample 7
+                sample7_orig_intel: 'entry.1653776146',
+                sample7_orig_natural: 'entry.831517301',
+                sample7_v1_intel: 'entry.1525626968',
+                sample7_v1_natural: 'entry.1696816979',
+                sample7_v2_intel: 'entry.54089823',
+                sample7_v2_natural: 'entry.2019515371',
+                sample7_v3_intel: 'entry.2141423422',
+                sample7_v3_natural: 'entry.1824567149',
+
+                // Sample 8
+                sample8_orig_intel: 'entry.2121663436',
+                sample8_orig_natural: 'entry.1914551651',
+                sample8_v1_intel: 'entry.138371447',
+                sample8_v1_natural: 'entry.185835641',
+                sample8_v2_intel: 'entry.836379662',
+                sample8_v2_natural: 'entry.1153635635',
+                sample8_v3_intel: 'entry.1134556155',
+                sample8_v3_natural: 'entry.2042833955',
+
+                // Sample 9
+                sample9_orig_intel: 'entry.1935339379',
+                sample9_orig_natural: 'entry.658512732',
+                sample9_v1_intel: 'entry.1307054647',
+                sample9_v1_natural: 'entry.1072043415',
+                sample9_v2_intel: 'entry.56838489',
+                sample9_v2_natural: 'entry.696882398',
+                sample9_v3_intel: 'entry.1785716780',
+                sample9_v3_natural: 'entry.1901591764',
+
+                // Sample 10
+                sample10_orig_intel: 'entry.828287336',
+                sample10_orig_natural: 'entry.1706607149',
+                sample10_v1_intel: 'entry.1941906147',
+                sample10_v1_natural: 'entry.753560747',
+                sample10_v2_intel: 'entry.1494380245',
+                sample10_v2_natural: 'entry.1352467050',
+                sample10_v3_intel: 'entry.1753582090',
+                sample10_v3_natural: 'entry.1385763675',
+            };
+            
+            const valueMap = {
+                "1": "1 Poor",
+                "2": "2 Fair",
+                "3": "3 Good",
+                "4": "4 Very Good",
+                "5": "5 Excellent"
+            };
+
+            const formData = new FormData();
+            Object.keys(ratings).forEach(key => {
+                if (entryMap[key]) {
+                    formData.append(entryMap[key], valueMap[ratings[key]]);
+                }
+            });
+
+                        // Check if all samples have been rated
             const requiredFields = [
                 'sample1_orig_intel', 'sample1_orig_natural',
                 'sample1_v1_intel', 'sample1_v1_natural',
                 'sample1_v2_intel', 'sample1_v2_natural',
-                'sample1_v3_intel', 'sample1_v3_natural'
+                'sample1_v3_intel', 'sample1_v3_natural',
+                // 'sample2_orig_intel', 'sample2_orig_natural',
+                // 'sample2_v1_intel', 'sample2_v1_natural',
+                // 'sample2_v2_intel', 'sample2_v2_natural',
+                // 'sample2_v3_intel', 'sample2_v3_natural',
+                // 'sample3_orig_intel', 'sample3_orig_natural',
+                // 'sample3_v1_intel', 'sample3_v1_natural',
+                // 'sample3_v2_intel', 'sample3_v2_natural',
+                // 'sample3_v3_intel', 'sample3_v3_natural',
+                // 'sample4_orig_intel', 'sample4_orig_natural',
+                // 'sample4_v1_intel', 'sample4_v1_natural',
+                // 'sample4_v2_intel', 'sample4_v2_natural',
+                // 'sample4_v3_intel', 'sample4_v3_natural',
+                // 'sample5_orig_intel', 'sample5_orig_natural',
+                // 'sample5_v1_intel', 'sample5_v1_natural',
+                // 'sample5_v2_intel', 'sample5_v2_natural',
+                // 'sample5_v3_intel', 'sample5_v3_natural',
+                // 'sample6_orig_intel', 'sample6_orig_natural',
+                // 'sample6_v1_intel', 'sample6_v1_natural',
+                // 'sample6_v2_intel', 'sample6_v2_natural',
+                // 'sample6_v3_intel', 'sample6_v3_natural',
+                // 'sample7_orig_intel', 'sample7_orig_natural',
+                // 'sample7_v1_intel', 'sample7_v1_natural',
+                // 'sample7_v2_intel', 'sample7_v2_natural',
+                // 'sample7_v3_intel', 'sample7_v3_natural',
+                // 'sample8_orig_intel', 'sample8_orig_natural',
+                // 'sample8_v1_intel', 'sample8_v1_natural',
+                // 'sample8_v2_intel', 'sample8_v2_natural',
+                // 'sample8_v3_intel', 'sample8_v3_natural',
+                // 'sample9_orig_intel', 'sample9_orig_natural',
+                // 'sample9_v1_intel', 'sample9_v1_natural',
+                // 'sample9_v2_intel', 'sample9_v2_natural',
+                // 'sample9_v3_intel', 'sample9_v3_natural',
+                // 'sample10_orig_intel', 'sample10_orig_natural',
+                // 'sample10_v1_intel', 'sample10_v1_natural',
+                // 'sample10_v2_intel', 'sample10_v2_natural',
+                // 'sample10_v3_intel', 'sample10_v3_natural',
             ];
             
             const missingRatings = requiredFields.filter(field => !ratings[field]);
@@ -2587,64 +2743,19 @@
                 return;
             }
 
-            // Create CSV content
-            const timestamp = new Date().toISOString();
-            const participantId = 'P' + Date.now(); // Simple participant ID
-            
-            // CSV Headers
-            const csvHeaders = [
-                'Timestamp',
-                'ParticipantID',
-                'BaselineLibriTTS_Intelligibility',
-                'BaselineLibriTTS_Naturalness',
-                'FinetunedBlock_Intelligibility',
-                'FinetunedBlock_Naturalness',
-                'OriginalAudio_Intelligibility',
-                'OriginalAudio_Naturalness',
-                'FinetunedUtterance_Intelligibility',
-                'FinetunedUtterance_Naturalness'
-            ];
-            
-            // CSV Data
-            const csvData = [
-                timestamp,
-                participantId,
-                ratings['sample1_orig_intel'] || '',
-                ratings['sample1_orig_natural'] || '',
-                ratings['sample1_v1_intel'] || '',
-                ratings['sample1_v1_natural'] || '',
-                ratings['sample1_v2_intel'] || '',
-                ratings['sample1_v2_natural'] || '',
-                ratings['sample1_v3_intel'] || '',
-                ratings['sample1_v3_natural'] || ''
-            ];
-            
-            // Create CSV string
-            const csvContent = csvHeaders.join(',') + '\n' + csvData.join(',');
-            
-            // Create and download CSV file
-            const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
-            const link = document.createElement('a');
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', `audio_evaluation_${participantId}.csv`);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            
-            // Also create email content
-            const emailSubject = `Audio Evaluation Results - ${participantId}`;
-            const emailBody = `Please find attached the audio evaluation results for participant ${participantId}.`;
-            
-            // Open email client - CHANGE EMAIL ADDRESS HERE
-            const mailtoLink = `jordan.wh.lewis@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            window.open(mailtoLink);
-            
-            alert('CSV file downloaded and email client opened. Please attach the CSV file to the email and send it.');
-            
-            // Reset the form
-            document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            // Submit to Google Form
+            fetch(GOOGLE_FORM_URL, {
+                method: 'POST',
+                body: formData,
+                mode: 'no-cors'
+            }).then(() => {
+                alert('Ratings submitted successfully! Thank you for your participation.');
+                // Optionally reset the form
+                document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
+            }).catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your ratings. Please try again.');
+            });
         }
     </script>      
 </body>
