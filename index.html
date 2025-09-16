@@ -2625,114 +2625,115 @@
             
             // Replace with your Google Form's /formResponse URL
             const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSds92NYZkEv_qDgiBr3ENHN3mKVkvzESapOIRNqaaBGA8jL8A/formResponse';
-            const formData = new FormData();
             
-
-            formData.append('fvv', '1');
-            formData.append('partialResponse', '[null,null,""]');
-            formData.append('pageHistory', '0');
-            // Map your ratings to Google Form field IDs (from the HTML source)
-            // Replace these with your actual entry.XXXXXXXX field IDs
+            const entryMap = {
             // Sample 1
-            formData.append('entry.697496361', ratings.sample1_orig_intel);
-            formData.append('entry.2086252116', ratings.sample1_orig_natural);
-            formData.append('entry.69306145', ratings.sample1_v1_intel);
-            formData.append('entry.2048534765', ratings.sample1_v1_natural);
-            formData.append('entry.693333540', ratings.sample1_v2_intel);
-            formData.append('entry.237906398', ratings.sample1_v2_natural);
-            formData.append('entry.103781161', ratings.sample1_v3_intel);
-            formData.append('entry.370942983', ratings.sample1_v3_natural);
+                sample1_orig_intel: 'entry.697496361',
+                sample1_orig_natural: 'entry.2086252116',
+                sample1_v1_intel: 'entry.69306145',
+                sample1_v1_natural: 'entry.2048534765',
+                sample1_v2_intel: 'entry.693333540',
+                sample1_v2_natural: 'entry.237906398',
+                sample1_v3_intel: 'entry.103781161',
+                sample1_v3_natural: 'entry.370942983',
 
-            // Sample 2
-            // formData.append('entry.564746457', ratings.sample2_orig_intel);
-            // formData.append('entry.162154893', ratings.sample2_orig_natural);
-            // formData.append('entry.1468518590', ratings.sample2_v1_intel);
-            // formData.append('entry.1734070840', ratings.sample2_v1_natural);
-            // formData.append('entry.1014996387', ratings.sample2_v2_intel);
-            // formData.append('entry.1249876313', ratings.sample2_v2_natural);
-            // formData.append('entry.942526737', ratings.sample2_v3_intel);
-            // formData.append('entry.1421492835', ratings.sample2_v3_natural);
+                // Sample 2
+                sample2_orig_intel: 'entry.564746457',
+                sample2_orig_natural: 'entry.162154893',
+                sample2_v1_intel: 'entry.1468518590',
+                sample2_v1_natural: 'entry.1734070840',
+                sample2_v2_intel: 'entry.1014996387',
+                sample2_v2_natural: 'entry.1249876313',
+                sample2_v3_intel: 'entry.942526737',
+                sample2_v3_natural: 'entry.1421492835',
 
-            // // Sample 3
-            // formData.append('entry.258569922', ratings.sample3_orig_intel);
-            // formData.append('entry.1273773516', ratings.sample3_orig_natural);
-            // formData.append('entry.179713210', ratings.sample3_v1_intel);
-            // formData.append('entry.636288750', ratings.sample3_v1_natural);
-            // formData.append('entry.349411671', ratings.sample3_v2_intel);
-            // formData.append('entry.179513446', ratings.sample3_v2_natural);
-            // formData.append('entry.62463597', ratings.sample3_v3_intel);
-            // formData.append('entry.117522096', ratings.sample3_v3_natural);
+                // Sample 3
+                sample3_orig_intel: 'entry.258569922',
+                sample3_orig_natural: 'entry.1273773516',
+                sample3_v1_intel: 'entry.179713210',
+                sample3_v1_natural: 'entry.636288750',
+                sample3_v2_intel: 'entry.349411671',
+                sample3_v2_natural: 'entry.179513446',
+                sample3_v3_intel: 'entry.62463597',
+                sample3_v3_natural: 'entry.117522096',
 
-            // // Sample 4
-            // formData.append('entry.1822014897', ratings.sample4_orig_intel);
-            // formData.append('entry.915086446', ratings.sample4_orig_natural);
-            // formData.append('entry.501554575', ratings.sample4_v1_intel);
-            // formData.append('entry.901387862', ratings.sample4_v1_natural);
-            // formData.append('entry.1339445697', ratings.sample4_v2_intel);
-            // formData.append('entry.676431687', ratings.sample4_v2_natural);
-            // formData.append('entry.975588788', ratings.sample4_v3_intel);
-            // formData.append('entry.1650201379', ratings.sample4_v3_natural);
+                // Sample 4
+                sample4_orig_intel: 'entry.1822014897',
+                sample4_orig_natural: 'entry.915086446',
+                sample4_v1_intel: 'entry.501554575',
+                sample4_v1_natural: 'entry.901387862',
+                sample4_v2_intel: 'entry.1339445697',
+                sample4_v2_natural: 'entry.676431687',
+                sample4_v3_intel: 'entry.975588788',
+                sample4_v3_natural: 'entry.1650201379',
 
-            // // Sample 5
-            // formData.append('entry.1129572032', ratings.sample5_orig_intel);
-            // formData.append('entry.1238574893', ratings.sample5_orig_natural);
-            // formData.append('entry.1516927696', ratings.sample5_v1_intel);
-            // formData.append('entry.1621835182', ratings.sample5_v1_natural);
-            // formData.append('entry.2135050501', ratings.sample5_v2_intel);
-            // formData.append('entry.1516840202', ratings.sample5_v2_natural);
-            // formData.append('entry.553305069', ratings.sample5_v3_intel);
-            // formData.append('entry.799227456', ratings.sample5_v3_natural);
+                // Sample 5
+                sample5_orig_intel: 'entry.1129572032',
+                sample5_orig_natural: 'entry.1238574893',
+                sample5_v1_intel: 'entry.1516927696',
+                sample5_v1_natural: 'entry.1621835182',
+                sample5_v2_intel: 'entry.2135050501',
+                sample5_v2_natural: 'entry.1516840202',
+                sample5_v3_intel: 'entry.553305069',
+                sample5_v3_natural: 'entry.799227456',
 
-            // // Sample 6
-            // formData.append('entry.741401598', ratings.sample6_orig_intel);
-            // formData.append('entry.1694736410', ratings.sample6_orig_natural);
-            // formData.append('entry.1690001922', ratings.sample6_v1_intel);
-            // formData.append('entry.333165356', ratings.sample6_v1_natural);
-            // formData.append('entry.2073594193', ratings.sample6_v2_intel);
-            // formData.append('entry.242556228', ratings.sample6_v2_natural);
-            // formData.append('entry.1065209138', ratings.sample6_v3_intel);
-            // formData.append('entry.1830375350', ratings.sample6_v3_natural);
+                // Sample 6
+                sample6_orig_intel: 'entry.741401598',
+                sample6_orig_natural: 'entry.1694736410',
+                sample6_v1_intel: 'entry.1690001922',
+                sample6_v1_natural: 'entry.333165356',
+                sample6_v2_intel: 'entry.2073594193',
+                sample6_v2_natural: 'entry.242556228',
+                sample6_v3_intel: 'entry.1065209138',
+                sample6_v3_natural: 'entry.1830375350',
 
-            // // Sample 7
-            // formData.append('entry.1653776146', ratings.sample7_orig_intel);
-            // formData.append('entry.831517301', ratings.sample7_orig_natural);
-            // formData.append('entry.1525626968', ratings.sample7_v1_intel);
-            // formData.append('entry.1696816979', ratings.sample7_v1_natural);
-            // formData.append('entry.54089823', ratings.sample7_v2_intel);
-            // formData.append('entry.2019515371', ratings.sample7_v2_natural);
-            // formData.append('entry.2141423422', ratings.sample7_v3_intel);
-            // formData.append('entry.1824567149', ratings.sample7_v3_natural);
+                // Sample 7
+                sample7_orig_intel: 'entry.1653776146',
+                sample7_orig_natural: 'entry.831517301',
+                sample7_v1_intel: 'entry.1525626968',
+                sample7_v1_natural: 'entry.1696816979',
+                sample7_v2_intel: 'entry.54089823',
+                sample7_v2_natural: 'entry.2019515371',
+                sample7_v3_intel: 'entry.2141423422',
+                sample7_v3_natural: 'entry.1824567149',
 
-            // // Sample 8
-            // formData.append('entry.2121663436', ratings.sample8_orig_intel);
-            // formData.append('entry.1914551651', ratings.sample8_orig_natural);
-            // formData.append('entry.138371447', ratings.sample8_v1_intel);
-            // formData.append('entry.185835641', ratings.sample8_v1_natural);
-            // formData.append('entry.836379662', ratings.sample8_v2_intel);
-            // formData.append('entry.1153635635', ratings.sample8_v2_natural);
-            // formData.append('entry.1134556155', ratings.sample8_v3_intel);
-            // formData.append('entry.2042833955', ratings.sample8_v3_natural);
+                // Sample 8
+                sample8_orig_intel: 'entry.2121663436',
+                sample8_orig_natural: 'entry.1914551651',
+                sample8_v1_intel: 'entry.138371447',
+                sample8_v1_natural: 'entry.185835641',
+                sample8_v2_intel: 'entry.836379662',
+                sample8_v2_natural: 'entry.1153635635',
+                sample8_v3_intel: 'entry.1134556155',
+                sample8_v3_natural: 'entry.2042833955',
 
-            // // Sample 9
-            // formData.append('entry.1935339379', ratings.sample9_orig_intel);
-            // formData.append('entry.658512732', ratings.sample9_orig_natural);
-            // formData.append('entry.1307054647', ratings.sample9_v1_intel);
-            // formData.append('entry.1072043415', ratings.sample9_v1_natural);
-            // formData.append('entry.56838489', ratings.sample9_v2_intel);
-            // formData.append('entry.696882398', ratings.sample9_v2_natural);
-            // formData.append('entry.1785716780', ratings.sample9_v3_intel);
-            // formData.append('entry.1901591764', ratings.sample9_v3_natural);
+                // Sample 9
+                sample9_orig_intel: 'entry.1935339379',
+                sample9_orig_natural: 'entry.658512732',
+                sample9_v1_intel: 'entry.1307054647',
+                sample9_v1_natural: 'entry.1072043415',
+                sample9_v2_intel: 'entry.56838489',
+                sample9_v2_natural: 'entry.696882398',
+                sample9_v3_intel: 'entry.1785716780',
+                sample9_v3_natural: 'entry.1901591764',
 
-            // // Sample 10
-            // formData.append('entry.828287336', ratings.sample10_orig_intel);
-            // formData.append('entry.1706607149', ratings.sample10_orig_natural);
-            // formData.append('entry.1941906147', ratings.sample10_v1_intel);
-            // formData.append('entry.753560747', ratings.sample10_v1_natural);
-            // formData.append('entry.1494380245', ratings.sample10_v2_intel);
-            // formData.append('entry.1352467050', ratings.sample10_v2_natural);
-            // formData.append('entry.1753582090', ratings.sample10_v3_intel);
-            // formData.append('entry.1385763675', ratings.sample10_v3_natural);
+                // Sample 10
+                sample10_orig_intel: 'entry.828287336',
+                sample10_orig_natural: 'entry.1706607149',
+                sample10_v1_intel: 'entry.1941906147',
+                sample10_v1_natural: 'entry.753560747',
+                sample10_v2_intel: 'entry.1494380245',
+                sample10_v2_natural: 'entry.1352467050',
+                sample10_v3_intel: 'entry.1753582090',
+                sample10_v3_natural: 'entry.1385763675',
+            };
             
+            Object.keys(ratings).forEach(key => {
+                if (entryMap[key]) {
+                    formData.append(entryMap[key], ratings[key]);
+                }
+            });
+
             // Submit to Google Form
             fetch(GOOGLE_FORM_URL, {
                 method: 'POST',
@@ -2747,52 +2748,6 @@
                 alert('There was an error submitting your ratings. Please try again.');
             });
         }
-
-        // Alternative: Submit as JSON string to a single Google Form field
-        function submitAsJSON() {
-            const ratings = {};
-            const radioButtons = document.querySelectorAll('input[type="radio"]:checked');
-            
-            radioButtons.forEach(radio => {
-                ratings[radio.name] = radio.value;
-            });
-            
-            // Add timestamp and participant ID if needed
-            const submission = {
-                timestamp: new Date().toISOString(),
-                participantId: Math.random().toString(36).substr(2, 9),
-                ratings: ratings
-            };
-            
-            const GOOGLE_FORM_URL = 'YOUR_GOOGLE_FORM_URL_HERE';
-            const formData = new FormData();
-            formData.append('entry.XXXXXXXXX', JSON.stringify(submission));
-            
-            fetch(GOOGLE_FORM_URL, {
-                method: 'POST',
-                body: formData,
-                mode: 'no-cors'
-            }).then(() => {
-                alert('Ratings submitted successfully!');
-            });
-        }
-    </script> = expectedRatings.filter(rating => !ratings[rating]);
-            
-            if (missingRatings.length > 0) {
-                alert('Please rate all audio samples on both intelligibility and naturalness before submitting.');
-                return;
-            }
-            
-            // Here you would typically send the ratings to your server
-            console.log('Ratings:', ratings);
-            alert('Ratings submitted successfully! Thank you for your participation.');
-            
-            // Example: Send to server
-            // fetch('/submit-ratings', {
-            //     method: 'POST',
-            //     headers: {'Content-Type': 'application/json'},
-            //     body: JSON.stringify(ratings)
-            // });
-    </script>
+    </script>      
 </body>
 </html>
