@@ -2627,6 +2627,10 @@
             const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSds92NYZkEv_qDgiBr3ENHN3mKVkvzESapOIRNqaaBGA8jL8A/formResponse';
             const formData = new FormData();
             
+
+            formData.append('fvv', '1');
+            formData.append('partialResponse', '[null,null,""]');
+            formData.append('pageHistory', '0');
             // Map your ratings to Google Form field IDs (from the HTML source)
             // Replace these with your actual entry.XXXXXXXX field IDs
             // Sample 1
