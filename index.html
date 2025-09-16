@@ -2635,14 +2635,10 @@
             
             // Also create email content
             const emailSubject = `Audio Evaluation Results - ${participantId}`;
-            const emailBody = `Please find attached the audio evaluation results for participant ${participantId}.\n\nTimestamp: ${timestamp}\n\nRatings:\n` +
-                `Baseline LibriTTS: Intelligibility=${ratings['sample1_orig_intel']}, Naturalness=${ratings['sample1_orig_natural']}\n` +
-                `Finetuned Block: Intelligibility=${ratings['sample1_v1_intel']}, Naturalness=${ratings['sample1_v1_natural']}\n` +
-                `Original Audio: Intelligibility=${ratings['sample1_v2_intel']}, Naturalness=${ratings['sample1_v2_natural']}\n` +
-                `Finetuned Utterance: Intelligibility=${ratings['sample1_v3_intel']}, Naturalness=${ratings['sample1_v3_natural']}`;
+            const emailBody = `Please find attached the audio evaluation results for participant ${participantId}.`;
             
             // Open email client - CHANGE EMAIL ADDRESS HERE
-            const mailtoLink = `mailto:your-email@example.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            const mailtoLink = `jordan.wh.lewis@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
             window.open(mailtoLink);
             
             alert('CSV file downloaded and email client opened. Please attach the CSV file to the email and send it.');
