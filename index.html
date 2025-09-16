@@ -2573,7 +2573,7 @@
             });
             
             // Replace with your Google Form's /formResponse URL
-            const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSds92NYZkEv_qDgiBr3ENHN3mKVkvzESapOIRNqaaBGA8jL8A/formResponse';
+            const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSds92NYZkEv_qDgiBr3ENHN3mKVkvzESapOIRNqaaBGA8jL8A/viewform';
 
             const entryMap = {
             // Sample 1
@@ -2676,23 +2676,15 @@
                 sample10_v3_intel: 'entry.1753582090',
                 sample10_v3_natural: 'entry.1385763675',
             };
-            
-            const valueMap = {
-                "1": "1 Poor",
-                "2": "2 Fair",
-                "3": "3 Good",
-                "4": "4 Very Good",
-                "5": "5 Excellent"
-            };
 
             const formData = new FormData();
             Object.keys(ratings).forEach(key => {
                 if (entryMap[key]) {
-                    formData.append(entryMap[key], valueMap[ratings[key]]);
+                    formData.append(entryMap[key], ratings[key]);
                 }
             });
 
-                        // Check if all samples have been rated
+            // Check if all samples have been rated
             const requiredFields = [
                 'sample1_orig_intel', 'sample1_orig_natural',
                 'sample1_v1_intel', 'sample1_v1_natural',
