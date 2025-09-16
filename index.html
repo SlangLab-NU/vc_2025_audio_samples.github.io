@@ -2626,6 +2626,21 @@
             // Replace with your Google Form's /formResponse URL
             const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSds92NYZkEv_qDgiBr3ENHN3mKVkvzESapOIRNqaaBGA8jL8A/formResponse';
             
+            const valueMap = {
+                "1": "1 Poor",
+                "2": "2 Fair",
+                "3": "3 Good",
+                "4": "4 Very Good",
+                "5": "5 Excellent"
+            };
+
+            const formData = new FormData();
+            Object.keys(ratings).forEach(key => {
+                if (entryMap[key]) {
+                    formData.append(entryMap[key], valueMap[ratings[key]]);
+                }
+            });
+
             const entryMap = {
             // Sample 1
                 sample1_orig_intel: 'entry.697496361',
