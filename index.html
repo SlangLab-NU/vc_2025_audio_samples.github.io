@@ -2562,26 +2562,45 @@
         <p style="margin-top: 15px; color: #666;">Thank you for participating in our evaluation study!</p>
     </div>
 
-    <script>
-        function submitToGoogleForm() {
+    <script type="module">
+        // Import Firebase modules
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-analytics.js";
+        import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+        
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyD-RVlCpEpkQhXwsSstuD6ilj6e53troa8",
+            authDomain: "mos-scoring.firebaseapp.com",
+            projectId: "mos-scoring",
+            storageBucket: "mos-scoring.firebasestorage.app",
+            messagingSenderId: "596293204923",
+            appId: "1:596293204923:web:2a967e5c093cd7e31ca29e",
+            measurementId: "G-N3ZST8XK1T"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+        const db = getFirestore(app);
+        
+        // Make submitToFirebase available globally
+        window.submitToFirebase = async function() {
             // Collect all ratings
             const ratings = {};
             const radioButtons = document.querySelectorAll('input[type="radio"]:checked');
             
             radioButtons.forEach(radio => {
-                ratings[radio.name] = radio.value;
+                ratings[radio.name] = parseInt(radio.value);
             });
             
-            // Check if all samples have been rated (uncomment samples you want to require)
+            // Check if all samples have been rated
             const requiredFields = [
                 'sample1_orig_intel', 'sample1_orig_natural',
                 'sample1_v1_intel', 'sample1_v1_natural',
                 'sample1_v2_intel', 'sample1_v2_natural',
                 'sample1_v3_intel', 'sample1_v3_natural'
-                // Add more samples as needed:
-                // 'sample2_orig_intel', 'sample2_orig_natural',
-                // 'sample2_v1_intel', 'sample2_v1_natural',
-                // etc.
+                // Add more samples as needed
             ];
             
             const missingRatings = requiredFields.filter(field => !ratings[field]);
@@ -2590,29 +2609,25 @@
                 return;
             }
             
-            // Add participant ID
-            ratings.participantId = 'P' + Date.now();
+            // Prepare submission data
+            const submissionData = {
+                participantId: 'P' + Date.now(),
+                timestamp: new Date().toISOString(),
+                ratings: ratings
+            };
             
-            // Replace with your Google Apps Script URL
-            const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwc6FC2KgHN_4iWkkagsu53icd1R06O-FuQheV7Uqkv__agYln-osWJEJo9A907ZIm9/exec';
-            
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(ratings)
-            })
-            .then(response => response.text())
-            .then(result => {
+            try {
+                // Add document to Firestore
+                const docRef = await addDoc(collection(db, "mos-ratings"), submissionData);
+                console.log("Document written with ID: ", docRef.id);
+                
                 alert('Ratings submitted successfully! Thank you for your participation.');
                 document.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
-            })
-            .catch(error => {
-                console.error('Error:', error);
+            } catch (error) {
+                console.error('Error submitting ratings:', error);
                 alert('There was an error submitting your ratings. Please try again.');
-            });
+            }
         }
-    </script>      
+    </script>   
 </body>
 </html>
